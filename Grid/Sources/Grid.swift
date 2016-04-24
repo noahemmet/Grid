@@ -73,7 +73,7 @@ public struct Grid<Element: Hashable> {
 	public init(rows: Int, columns: Int, repeatedValue: Element) {
 		self.rows = rows
 		self.columns = columns
-		self.elements = Array<Element>(count: rows * columns, repeatedValue: repeatedValue)
+		self.elements = Array<Element>(repeating: repeatedValue, count: rows * columns)
 	}
 	
 	/**
@@ -111,7 +111,7 @@ public struct Grid<Element: Hashable> {
 	/**
 	-returns: An element at a specific row and column, or nil if that point is out of bounds. 
 	*/
-	public func elementAt(row row: Int, column: Int) -> Element? {
+	public func elementAt(row: Int, column: Int) -> Element? {
 		guard pointIsWithinBounds(row: row, column: column) else {
 			return nil
 		}
@@ -137,7 +137,7 @@ public struct Grid<Element: Hashable> {
 	
 	- returns: An array of elements in a column.
 	*/
-	public func elementsAt(row row: Int, range: Range<Int>) -> [Element] {
+	public func elementsAt(row: Int, range: Range<Int>) -> [Element] {
 		var columns: [Element] = []
 		for columnIndex in range {
 			if let element = self.elementAt(row: row, column: columnIndex) {
@@ -155,7 +155,7 @@ public struct Grid<Element: Hashable> {
 	
 	- returns: An array of elements in a row.
 	*/
-	public func elementsAt(column column: Int, range: Range<Int>) -> [Element] {
+	public func elementsAt(column: Int, range: Range<Int>) -> [Element] {
 		var rows: [Element] = []
 		for rowIndex in range {
 			if let element = self.elementAt(row: rowIndex, column: column) {
@@ -173,16 +173,16 @@ public struct Grid<Element: Hashable> {
 	
 	- returns: A trimmed `Grid`.
 	*/
-	public subscript(rows rowsInRange: Range<Int>, columns columnsInRange: Range<Int>) -> Grid<Element> {
-		let trimmedRowRange = max(0, rowsInRange.startIndex) ..< min(rows, rowsInRange.endIndex)
-		let trimmedColumnRange = max(0, columnsInRange.startIndex) ..< min(columns, columnsInRange.endIndex)
-		
-		return Grid(rows: trimmedRowRange.count, columns: trimmedColumnRange.count) { (row, column) in
-			let offsetRow = row + trimmedRowRange.startIndex
-			let offsetColumn = column + trimmedColumnRange.startIndex
-			return self[offsetRow, offsetColumn]
-		}
-	}
+//	public subscript(rows rowsInRange: Range<Int>, columns columnsInRange: Range<Int>) -> Grid<Element> {
+//		let trimmedRowRange = max(0, rowsInRange.startIndex) ..< min(rows, rowsInRange.endIndex)
+//		let trimmedColumnRange = max(0, columnsInRange.startIndex) ..< min(columns, columnsInRange.endIndex)
+//		
+//		return Grid(rows: trimmedRowRange.count, columns: trimmedColumnRange.count) { (row, column) in
+//			let offsetRow = row + trimmedRowRange.startIndex
+//			let offsetColumn = column + trimmedColumnRange.startIndex
+//			return self[offsetRow, offsetColumn]
+//		}
+//	}
 	
 	/**
 	Filter by indexes within a point.
@@ -192,15 +192,15 @@ public struct Grid<Element: Hashable> {
 	
 	- returns: A trimmed `Grid`.
 	*/
-	public subscript(nearPoint point: GridPoint, within within: Int) -> Grid<Element> {
-		let rowRange = (point.row - within) ... (point.row + within)
-		let columnRange = (point.column - within) ... (point.column + within)
-		guard rowRange.startIndex <= rows && columnRange.startIndex <= columns else {
-			// out of bounds; return empty Grid
-			return Grid<Element>()
-		}
-		return self[rows: rowRange, columns: columnRange]
-	}
+//	public subscript(nearPoint point: GridPoint, within within: Int) -> Grid<Element> {
+//		let rowRange = (point.row - within) ... (point.row + within)
+//		let columnRange = (point.column - within) ... (point.column + within)
+//		guard rowRange.startIndex <= rows && columnRange.startIndex <= columns else {
+//			// out of bounds; return empty Grid
+//			return Grid<Element>()
+//		}
+//		return self[rows: rowRange, columns: columnRange]
+//	}
 	
 	/**
 	- parameter row:	 The index of the row.
@@ -269,7 +269,7 @@ public struct Grid<Element: Hashable> {
 	- parameter element:	 The `Element` to search for. 
 	*/
 	public subscript(element: Element) -> Int? {
-		return elements.indexOf(element)
+		return elements.index(of: element)
 	}
 	
 	/**
@@ -286,7 +286,7 @@ public struct Grid<Element: Hashable> {
 	/**
 	- returns: Returns `true` if a point is within bounds.
 	*/
-	private func pointIsWithinBounds(row row: Int, column: Int) -> Bool {
+	private func pointIsWithinBounds(row: Int, column: Int) -> Bool {
 		return row >= 0 && row < rows && column >= 0 && column < columns
 	}
 	
@@ -311,20 +311,20 @@ public struct Grid<Element: Hashable> {
 	public var center: GridPoint {
 		let centerElement = self[Int(rows/2), Int(columns/2)]
 		let index = self[centerElement]!
-		return gridPointOfIndex(index)
+		return gridPointOfIndex(index: index)
 	}
 	
 	/// Returns a `Generator` of every point on the grid.
-	public func points() -> AnyGenerator<GridPoint> {
+	public func points() -> AnyIterator<GridPoint> {
 		var elementIndex = 0
-		return AnyGenerator<GridPoint> {
+		return AnyIterator<GridPoint> {
 			guard elementIndex < self.elements.count else {
 				return nil
 			}
 			defer {
 				elementIndex += 1
 			}
-			return self.gridPointOfIndex(elementIndex)
+			return self.gridPointOfIndex(index: elementIndex)
 		}
 	}
 	
@@ -355,12 +355,12 @@ public struct Grid<Element: Hashable> {
 			let ring: [Element]
 			// reversed arrays are separated for better compile times.
 			if clockwise {
-				let rightColumnReversed = rightColumn.reverse()
-				let bottomRowReversed = bottomRow.reverse()
+				let rightColumnReversed = rightColumn.reversed()
+				let bottomRowReversed = bottomRow.reversed()
 				ring = topRow + rightColumnReversed + bottomRowReversed + leftColumn
 			} else {
-				let topRowReversed = topRow.reverse()
-				let rightColumnReversed = rightColumn.reverse()
+				let topRowReversed = topRow.reversed()
+				let rightColumnReversed = rightColumn.reversed()
 				ring = topRowReversed + leftColumn + bottomRow + rightColumnReversed
 			}
 			rings.append(ring)
@@ -377,13 +377,13 @@ public struct Grid<Element: Hashable> {
 	
 	- returns: A `Generator`.
 	*/
-	public func spiral(from centerPoint: GridPoint, start cardinality: PrincipalCardinalDirection = .NorthWest, clockwise: Bool = true) -> AnyGenerator<Element> {
+	public func spiral(from centerPoint: GridPoint, start cardinality: PrincipalCardinalDirection = .NorthWest, clockwise: Bool = true) -> AnyIterator<Element> {
 		
 		var ringIndex = 1
 		var elementIndex = 0
 		var nextRing = ringsAround(point: centerPoint, clockwise: clockwise).first!
 //		let _ = PrincipalCardinalDirection.cases.count % cardinality.rawValue
-		return AnyGenerator<Element> { 
+		return AnyIterator<Element> { 
 			if elementIndex < nextRing.count {
 				// Traverse each ring
 				let element = nextRing[elementIndex]
@@ -409,11 +409,11 @@ public struct Grid<Element: Hashable> {
 
 // MARK: - SequenceType / SequenceType
 
-extension Grid: SequenceType {
-	public func generate() -> AnyGenerator<Element> {
+extension Grid: Sequence {
+	public func makeIterator() -> AnyIterator<Element> {
 		var isFirstElement = true
 		var nextPoint: GridPoint = GridPoint(row: 0, column: 0)
-		return AnyGenerator<Element> {
+		return AnyIterator<Element> {
 			if isFirstElement {
 				isFirstElement = false
 				return self[nextPoint.column, nextPoint.row]

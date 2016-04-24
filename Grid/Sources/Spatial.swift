@@ -110,9 +110,9 @@ public enum PrincipalCardinalDirection: Int, CasesProtocol {
 	public var cases: [PrincipalCardinalDirection] {
 		let total = PrincipalCardinalDirection.cases.count
 		var cases: [PrincipalCardinalDirection] = []
-		let generator = self.generate()
+		let iterator = self.makeIterator()
 		for _ in 0 ..< total {
-			if let next = generator.next() { 
+			if let next = iterator.next() { 
 				cases.append(next) 
 			}
 		}
@@ -164,17 +164,17 @@ public enum PrincipalCardinalDirection: Int, CasesProtocol {
 	}
 }
 
-extension PrincipalCardinalDirection: SequenceType {
-	public func generate() -> AnyGenerator<PrincipalCardinalDirection> {
+extension PrincipalCardinalDirection: Sequence {
+	public func makeIterator() -> AnyIterator<PrincipalCardinalDirection> {
 		var isFirstRun = true
 		var next = self
 		let directions = PrincipalCardinalDirection.cases
-		return AnyGenerator<PrincipalCardinalDirection> {
+		return AnyIterator<PrincipalCardinalDirection> {
 			if isFirstRun {
 				isFirstRun = false
 				return self
 			}
-			if let i = directions.indexOf(next) where i < directions.count - 1 {
+			if let i = directions.index(of: next) where i < directions.count - 1 {
 				next = directions[i + 1]
 			} else {
 				next = directions.first!
