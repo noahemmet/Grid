@@ -25,13 +25,19 @@ public struct GridPoint {
 	public var column: Int
 }
 
+extension GridPoint: Hashable {
+	public var hashValue: Int {
+		return (row * column).hashValue
+	}
+}
+
 extension GridPoint: CustomDebugStringConvertible {
 	public var debugDescription: String {
 		return String(row, column)
 	}
 }
 
-public func ==(lhs: (row: Int, column: Int), rhs: (row: Int, column: Int)) -> Bool {
+public func ==(lhs: GridPoint, rhs: GridPoint) -> Bool {
 	return lhs.column == rhs.column && lhs.row == rhs.row
 }
 
@@ -264,10 +270,6 @@ public struct Grid<Element: Hashable> {
 	public subscript(element: Element) -> Int? {
 		return elements.indexOf(element)
 	}
-	
-//	public subscript(type type: Element) -> Int? {
-//		return elements.indexOf(element)
-//	}
 	
 	/**
 	Returns a `GridPoint` from an index.

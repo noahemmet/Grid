@@ -21,7 +21,6 @@ public class GridVisualizer<Element: Hashable>: NSObject {
 		layout.minimumLineSpacing = 0
 		layout.minimumInteritemSpacing = 0
 		let frame = CGRect(x: 0, y: 0, width: CGFloat(grid.rows) * layout.itemSize.width, height: CGFloat(grid.columns) * layout.itemSize.height)
-		print(frame)
 		self.collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
 		self.collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: String(UICollectionViewCell))
 		self.grid = grid
