@@ -44,6 +44,7 @@ public func ==(lhs: GridPoint, rhs: GridPoint) -> Bool {
 /**
 *	A two-dimensional grid of `Element`s. 
 *   The grid is backed by a single array of `Element`s, but provides convenience functions to access it.
+*   TODO: Devise a clear pattern for manipulating elements vs points.
 */
 public struct Grid<Element: Hashable> {
 	/// Number of rows in the grid.

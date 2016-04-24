@@ -10,6 +10,7 @@ import Foundation
 
 public typealias ColorAtIndex = Int -> UIColor
 
+/// A clumsy visualizer for getting around some Playground limitations.
 public class GridVisualizer<Element: Hashable>: NSObject {
 	public let grid: Grid<Element>
 	public let collectionView: UICollectionView
