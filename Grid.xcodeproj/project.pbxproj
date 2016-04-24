@@ -12,6 +12,7 @@
 		8601390C1CCC444600A0D8BE /* GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8601390B1CCC444600A0D8BE /* GridTests.swift */; };
 		860139171CCC446400A0D8BE /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860139161CCC446400A0D8BE /* Grid.swift */; };
 		8601391A1CCC480600A0D8BE /* Spatial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860139191CCC480600A0D8BE /* Spatial.swift */; };
+		8601391F1CCC5AD900A0D8BE /* PlaygroundExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8601391E1CCC5AD900A0D8BE /* PlaygroundExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,8 +33,9 @@
 		8601390B1CCC444600A0D8BE /* GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTests.swift; sourceTree = "<group>"; };
 		8601390D1CCC444600A0D8BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		860139161CCC446400A0D8BE /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
-		860139181CCC447400A0D8BE /* GridPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GridPlayground.playground; sourceTree = "<group>"; };
 		860139191CCC480600A0D8BE /* Spatial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spatial.swift; sourceTree = "<group>"; };
+		8601391B1CCC521400A0D8BE /* Grid.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Grid.playground; sourceTree = "<group>"; };
+		8601391E1CCC5AD900A0D8BE /* PlaygroundExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +81,9 @@
 				860138FF1CCC444600A0D8BE /* Grid.h */,
 				860139161CCC446400A0D8BE /* Grid.swift */,
 				860139191CCC480600A0D8BE /* Spatial.swift */,
-				860139181CCC447400A0D8BE /* GridPlayground.playground */,
+				8601391E1CCC5AD900A0D8BE /* PlaygroundExtensions.swift */,
 				860139011CCC444600A0D8BE /* Info.plist */,
+				8601391B1CCC521400A0D8BE /* Grid.playground */,
 			);
 			path = Grid;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8601391A1CCC480600A0D8BE /* Spatial.swift in Sources */,
+				8601391F1CCC5AD900A0D8BE /* PlaygroundExtensions.swift in Sources */,
 				860139171CCC446400A0D8BE /* Grid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

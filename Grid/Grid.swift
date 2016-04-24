@@ -111,8 +111,14 @@ public struct Grid<Element: Hashable> {
 		return self[row, column]
 	}
 	
+	/// Returns the element at a `GridPoint`.
 	public subscript(index: GridPoint) -> Element {
 		return self[index.row, index.column]
+	}
+	
+	/// Returns the element at an index.
+	public subscript(index: Int) -> Element {
+		return self.elements[index]
 	}
 	
 	
@@ -303,6 +309,20 @@ public struct Grid<Element: Hashable> {
 		let centerElement = self[Int(rows/2), Int(columns/2)]
 		let index = self[centerElement]!
 		return gridPointOfIndex(index)
+	}
+	
+	/// Returns a `Generator` of every point on the grid.
+	public func points() -> AnyGenerator<GridPoint> {
+		var elementIndex = 0
+		return AnyGenerator<GridPoint> {
+			guard elementIndex < self.elements.count else {
+				return nil
+			}
+			defer {
+				elementIndex += 1
+			}
+			return self.gridPointOfIndex(elementIndex)
+		}
 	}
 	
 	/**
