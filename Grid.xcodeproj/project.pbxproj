@@ -10,6 +10,8 @@
 		860139001CCC444600A0D8BE /* Grid.h in Headers */ = {isa = PBXBuildFile; fileRef = 860138FF1CCC444600A0D8BE /* Grid.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		860139071CCC444600A0D8BE /* Grid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860138FC1CCC444600A0D8BE /* Grid.framework */; };
 		8601390C1CCC444600A0D8BE /* GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8601390B1CCC444600A0D8BE /* GridTests.swift */; };
+		860139171CCC446400A0D8BE /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860139161CCC446400A0D8BE /* Grid.swift */; };
+		8601391A1CCC480600A0D8BE /* Spatial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860139191CCC480600A0D8BE /* Spatial.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,9 @@
 		860139061CCC444600A0D8BE /* GridTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GridTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8601390B1CCC444600A0D8BE /* GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTests.swift; sourceTree = "<group>"; };
 		8601390D1CCC444600A0D8BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		860139161CCC446400A0D8BE /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		860139181CCC447400A0D8BE /* GridPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GridPlayground.playground; sourceTree = "<group>"; };
+		860139191CCC480600A0D8BE /* Spatial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spatial.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +77,9 @@
 			isa = PBXGroup;
 			children = (
 				860138FF1CCC444600A0D8BE /* Grid.h */,
+				860139161CCC446400A0D8BE /* Grid.swift */,
+				860139191CCC480600A0D8BE /* Spatial.swift */,
+				860139181CCC447400A0D8BE /* GridPlayground.playground */,
 				860139011CCC444600A0D8BE /* Info.plist */,
 			);
 			path = Grid;
@@ -194,6 +202,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8601391A1CCC480600A0D8BE /* Spatial.swift in Sources */,
+				860139171CCC446400A0D8BE /* Grid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +320,7 @@
 		860139111CCC444600A0D8BE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -317,15 +328,18 @@
 				INFOPLIST_FILE = Grid/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sticks.Grid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		860139121CCC444600A0D8BE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -333,6 +347,7 @@
 				INFOPLIST_FILE = Grid/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sticks.Grid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
