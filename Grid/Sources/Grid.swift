@@ -174,8 +174,8 @@ public struct Grid<Element: Hashable> {
 	- returns: A trimmed `Grid`.
 	*/
 	public subscript(rows rowsInRange: CountableRange<Int>, columns columnsInRange: CountableRange<Int>) -> Grid<Element> {
-		let trimmedRowRange = Swift.max(0, rowsInRange.startIndex) ..< Swift.min(rows, rowsInRange.endIndex)
-		let trimmedColumnRange = Swift.max(0, columnsInRange.startIndex) ..< Swift.min(columns, columnsInRange.endIndex)
+		let trimmedRowRange = Swift.max(0, rowsInRange.lowerBound) ..< Swift.min(rows, rowsInRange.upperBound)
+		let trimmedColumnRange = Swift.max(0, columnsInRange.lowerBound) ..< Swift.min(columns, columnsInRange.upperBound)
 		return Grid(rows: trimmedRowRange.count, columns: trimmedColumnRange.count) { (row, column) in
 			let offsetRow = row + trimmedRowRange.startIndex
 			let offsetColumn = column + trimmedColumnRange.startIndex
@@ -191,15 +191,16 @@ public struct Grid<Element: Hashable> {
 	
 	- returns: A trimmed `Grid`.
 	*/
-//	public subscript(nearPoint point: GridPoint, within within: Int) -> Grid<Element> {
-//		let rowRange = (point.row - within) ... (point.row + within)
-//		let columnRange = (point.column - within) ... (point.column + within)
-//		guard rowRange.startIndex <= rows && columnRange.startIndex <= columns else {
-//			// out of bounds; return empty Grid
-//			return Grid<Element>()
-//		}
-//		return self[rows: rowRange, columns: columnRange]
-//	}
+	public subscript(nearPoint point: GridPoint, within within: Int) -> Grid<Element> {
+		// +1s are for Countable / ClosedRange
+		let rowRange: CountableRange<Int> = (point.row - within) ..< (point.row + within + 1)
+		let columnRange: CountableRange<Int> = (point.column - within) ..< (point.column + within + 1)
+		guard rowRange.lowerBound <= rows && columnRange.lowerBound <= columns else {
+			// out of bounds; return empty Grid
+			return Grid<Element>()
+		}
+		return self[rows: rowRange, columns: columnRange]
+	}
 	
 	/**
 	- parameter row:	 The index of the row.
