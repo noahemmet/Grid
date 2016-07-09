@@ -22,42 +22,42 @@ extension Degree {
 }
 
 public enum RelativeDirection {
-	case Forward
-	case Backward
-	case Left
-	case Right
+	case forward
+	case backward
+	case left
+	case right
 	
 	public var degrees: Degree {
 		let degrees: Degree
 		switch self {
-		case .Forward:  degrees =   0
-		case .Backward: degrees = 180
-		case .Right:		degrees =  90
-		case .Left:		degrees = 270
+		case .forward:  degrees =   0
+		case .backward: degrees = 180
+		case .right:		degrees =  90
+		case .left:		degrees = 270
 		}
 		return degrees
 	}
 }
 
 public enum CardinalDirection: CasesProtocol {
-	case North
-	case East
-	case South
-	case West
+	case north
+	case east
+	case south
+	case west
 	
 	public var degrees: Degree {
 		let degrees: Degree
 		switch self {
-		case .North: degrees =   0
-		case .East:  degrees =  90
-		case .South: degrees = 180
-		case .West:  degrees = 270
+		case .north: degrees =   0
+		case .east:  degrees =  90
+		case .south: degrees = 180
+		case .west:  degrees = 270
 		}
 		return degrees
 	}
 	
 	public static var cases: [CardinalDirection] {
-		return [.North, .East, .South, .West]
+		return [.north, .east, .south, .west]
 	}
 	
 	public func rangeAroundPoint() {
@@ -66,45 +66,45 @@ public enum CardinalDirection: CasesProtocol {
 	
 	public var opposite: CardinalDirection {
 		switch self {
-		case .North: 
-			return .South
-		case .East:  
-			return .West
-		case .South:
-			return .North
-		case .West:  
-			return .East
+		case .north: 
+			return .south
+		case .east:  
+			return .west
+		case .south:
+			return .north
+		case .west:  
+			return .east
 		}
 	}
 }
 
 public enum PrincipalCardinalDirection: Int, CasesProtocol {
-	case North
-	case NorthEast
-	case East
-	case SouthEast
-	case South
-	case SouthWest
-	case West
-	case NorthWest
+	case north
+	case northEast
+	case east
+	case southEast
+	case south
+	case southWest
+	case west
+	case northWest
 	
 	public var degrees: Degree {
 		let degrees: Degree
 		switch self {
-		case .North: degrees =   0
-		case .NorthEast: degrees = 45
-		case .East:  degrees =  90
-		case .SouthEast: degrees = 135
-		case .South: degrees = 180
-		case .SouthWest: degrees = 225
-		case .West:  degrees = 270
-		case .NorthWest: degrees = 315
+		case .north: degrees =   0
+		case .northEast: degrees = 45
+		case .east:  degrees =  90
+		case .southEast: degrees = 135
+		case .south: degrees = 180
+		case .southWest: degrees = 225
+		case .west:  degrees = 270
+		case .northWest: degrees = 315
 		}
 		return degrees
 	}
 	
 	public static var cases: [PrincipalCardinalDirection] { 
-		return [.North, .NorthEast, .East, .SouthEast, .South, .SouthWest, .West, .NorthWest]
+		return [.north, .northEast, .east, .southEast, .south, .southWest, .west, .northWest]
 	}
 	
 	public var cases: [PrincipalCardinalDirection] {
@@ -121,46 +121,46 @@ public enum PrincipalCardinalDirection: Int, CasesProtocol {
 	
 	public var opposite: PrincipalCardinalDirection {
 		switch self {
-		case .North: 
-			return .South
-		case .NorthEast: 
-			return .SouthWest
-		case .East:  
-			return .West
-		case .SouthEast: 
-			return .NorthWest
-		case .South:
-			return .North
-		case .SouthWest: 
-			return .NorthEast
-		case .West:  
-			return .East
-		case .NorthWest: 
-			return .SouthEast
+		case .north: 
+			return .south
+		case .northEast: 
+			return .southWest
+		case .east:  
+			return .west
+		case .southEast: 
+			return .northWest
+		case .south:
+			return .north
+		case .southWest: 
+			return .northEast
+		case .west:  
+			return .east
+		case .northWest: 
+			return .southEast
 		}
 	}
 	
-	public func circularHeading(circlingDirection: CircularDirection) -> CardinalDirection {
+	public func circularHeading(_ circlingDirection: CircularDirection) -> CardinalDirection {
 		let heading: CardinalDirection
 		switch self {
-		case .North: 
-			heading = .East
-		case .NorthEast: 
-			heading = .South
-		case .East:  
-			heading = .South
-		case .SouthEast: 
-			heading = .West
-		case .South:
-			heading = .West
-		case .SouthWest: 
-			heading = .North
-		case .West:  
-			heading = .North
-		case .NorthWest: 
-			heading = .East
+		case .north: 
+			heading = .east
+		case .northEast: 
+			heading = .south
+		case .east:  
+			heading = .south
+		case .southEast: 
+			heading = .west
+		case .south:
+			heading = .west
+		case .southWest: 
+			heading = .north
+		case .west:  
+			heading = .north
+		case .northWest: 
+			heading = .east
 		}
-		return (circlingDirection == .Clockwise) ? heading : heading.opposite
+		return (circlingDirection == .clockwise) ? heading : heading.opposite
 	}
 }
 
@@ -189,6 +189,6 @@ extension PrincipalCardinalDirection {
 }
 
 public enum CircularDirection {
-	case Clockwise
-	case CounterClockwise
+	case clockwise
+	case counterClockwise
 }

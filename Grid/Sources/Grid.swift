@@ -137,7 +137,7 @@ public struct Grid<Element: Hashable> {
 	
 	- returns: An array of elements in a column.
 	*/
-	public func elementsAt(row: Int, range: Range<Int>) -> [Element] {
+	public func elementsAt(row: Int, range: CountableRange<Int>) -> [Element] {
 		var columns: [Element] = []
 		for columnIndex in range {
 			if let element = self.elementAt(row: row, column: columnIndex) {
@@ -155,7 +155,7 @@ public struct Grid<Element: Hashable> {
 	
 	- returns: An array of elements in a row.
 	*/
-	public func elementsAt(column: Int, range: Range<Int>) -> [Element] {
+	public func elementsAt(column: Int, range: CountableRange<Int>) -> [Element] {
 		var rows: [Element] = []
 		for rowIndex in range {
 			if let element = self.elementAt(row: rowIndex, column: column) {
@@ -207,7 +207,7 @@ public struct Grid<Element: Hashable> {
 	
 	- returns: A column of `Element`s.
 	*/
-	public func columnForRow(row: Int) -> [Element] {
+	public func columnForRow(_ row: Int) -> [Element] {
 //		get {
 			assert(row < rows)
 			let startIndex = row * columns
@@ -236,24 +236,24 @@ public struct Grid<Element: Hashable> {
 	public subscript(point point: GridPoint, cardinality cardinality: PrincipalCardinalDirection, distance distance: Int) -> GridPoint? {
 		var newPoint = point
 		switch cardinality {
-		case .North:
+		case .north:
 			newPoint.row -= distance
-		case .NorthEast:
+		case .northEast:
 			newPoint.row -= distance
 			newPoint.column += distance
-		case .East:
+		case .east:
 			newPoint.column += distance
-		case .SouthEast:
+		case .southEast:
 			newPoint.row += distance
 			newPoint.column += distance
-		case .South:
+		case .south:
 			newPoint.row += distance
-		case .SouthWest:
+		case .southWest:
 			newPoint.row += distance
 			newPoint.column -= distance
-		case .West:
+		case .west:
 			newPoint.column -= distance
-		case .NorthWest:
+		case .northWest:
 			newPoint.row -= distance
 			newPoint.column += distance
 		}
@@ -277,7 +277,7 @@ public struct Grid<Element: Hashable> {
 	
 	- parameter index:	The index of the point.
 	*/
-	public func gridPointOfIndex(index: Int) -> GridPoint {
+	public func gridPointOfIndex(_ index: Int) -> GridPoint {
 		let row = index / rows
 		let column = index % columns
 		return GridPoint(row: row, column: column)
@@ -301,8 +301,8 @@ public struct Grid<Element: Hashable> {
 	- returns: A random `GridPoint`.
 	*/
 	public var randomIndex: GridPoint {
-		let x = Int(rand()) % rows
-		let y = rand() % Int32(columns)
+		let x = Int(arc4random()) % rows
+		let y = arc4random() % UInt32(columns)
 		let index = GridPoint(row: x, column: Int(y))
 		return index
 	}
@@ -311,7 +311,7 @@ public struct Grid<Element: Hashable> {
 	public var center: GridPoint {
 		let centerElement = self[Int(rows/2), Int(columns/2)]
 		let index = self[centerElement]!
-		return gridPointOfIndex(index: index)
+		return gridPointOfIndex(index)
 	}
 	
 	/// Returns a `Generator` of every point on the grid.
@@ -324,7 +324,7 @@ public struct Grid<Element: Hashable> {
 			defer {
 				elementIndex += 1
 			}
-			return self.gridPointOfIndex(index: elementIndex)
+			return self.gridPointOfIndex(elementIndex)
 		}
 	}
 	
@@ -335,7 +335,7 @@ public struct Grid<Element: Hashable> {
 	- parameter range:				The range extending from the `centerPoint`.
 	- parameter clockwise:		Clockwise or counter-clockwise.
 	*/
-	public func ringsAround(point centerPoint: GridPoint, range: Range<Int> = 1..<2, clockwise: Bool = true) -> [[Element]] {
+	public func ringsAround(point centerPoint: GridPoint, range: CountableRange<Int> = 1..<2, clockwise: Bool = true) -> [[Element]] {
 		var rings: [[Element]] = []
 		for ringIndex in range {
 			
@@ -377,7 +377,7 @@ public struct Grid<Element: Hashable> {
 	
 	- returns: A `Generator`.
 	*/
-	public func spiral(from centerPoint: GridPoint, start cardinality: PrincipalCardinalDirection = .NorthWest, clockwise: Bool = true) -> AnyIterator<Element> {
+	public func spiral(from centerPoint: GridPoint, start cardinality: PrincipalCardinalDirection = .northWest, clockwise: Bool = true) -> AnyIterator<Element> {
 		
 		var ringIndex = 1
 		var elementIndex = 0
