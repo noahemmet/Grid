@@ -173,16 +173,15 @@ public struct Grid<Element: Hashable> {
 	
 	- returns: A trimmed `Grid`.
 	*/
-//	public subscript(rows rowsInRange: Range<Int>, columns columnsInRange: Range<Int>) -> Grid<Element> {
-//		let trimmedRowRange = max(0, rowsInRange.startIndex) ..< min(rows, rowsInRange.endIndex)
-//		let trimmedColumnRange = max(0, columnsInRange.startIndex) ..< min(columns, columnsInRange.endIndex)
-//		
-//		return Grid(rows: trimmedRowRange.count, columns: trimmedColumnRange.count) { (row, column) in
-//			let offsetRow = row + trimmedRowRange.startIndex
-//			let offsetColumn = column + trimmedColumnRange.startIndex
-//			return self[offsetRow, offsetColumn]
-//		}
-//	}
+	public subscript(rows rowsInRange: CountableRange<Int>, columns columnsInRange: CountableRange<Int>) -> Grid<Element> {
+		let trimmedRowRange = Swift.max(0, rowsInRange.startIndex) ..< Swift.min(rows, rowsInRange.endIndex)
+		let trimmedColumnRange = Swift.max(0, columnsInRange.startIndex) ..< Swift.min(columns, columnsInRange.endIndex)
+		return Grid(rows: trimmedRowRange.count, columns: trimmedColumnRange.count) { (row, column) in
+			let offsetRow = row + trimmedRowRange.startIndex
+			let offsetColumn = column + trimmedColumnRange.startIndex
+			return self[offsetRow, offsetColumn]
+		}
+	}
 	
 	/**
 	Filter by indexes within a point.

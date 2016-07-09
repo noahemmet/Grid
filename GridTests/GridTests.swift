@@ -23,14 +23,16 @@ private func ==(lhs: Position, rhs: Position) -> Bool {
 
 class GridTestCase: XCTestCase {
 	
-	private var grid: Grid<Position>!
+	private var grid: Grid<Position> = Grid(rows: 100, columns: 100) { (row, column) in
+		return Position(row: row, column: column)
+	}
 	
 	override func setUp() {
 		super.setUp()
 		
-		grid = Grid(rows: 100, columns: 100) { (row, column) in
-			return Position(row: row, column: column)
-		}
+//		grid = Grid(rows: 100, columns: 100) { (row, column) in
+//			return Position(row: row, column: column)
+//		}
 	}
 	
 	override func tearDown() {
@@ -38,9 +40,9 @@ class GridTestCase: XCTestCase {
 	}
 	
 	func testRangeSubscript() {
-//		let rangedGrid = grid[rows: 0 ... 1, columns: 0 ..< 2]
-//		XCTAssertEqual(rangedGrid.rows, 2)
-//		XCTAssertEqual(rangedGrid.columns, 2)
+		let rangedGrid = grid[rows: 0..<2, columns: 0..<2]
+		XCTAssertEqual(rangedGrid.rows, 2)
+		XCTAssertEqual(rangedGrid.columns, 2)
 	}
 	
 	func testRangeSubscriptOffset() {
