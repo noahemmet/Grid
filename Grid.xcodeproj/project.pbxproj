@@ -10,9 +10,9 @@
 		860139001CCC444600A0D8BE /* Grid.h in Headers */ = {isa = PBXBuildFile; fileRef = 860138FF1CCC444600A0D8BE /* Grid.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		860139071CCC444600A0D8BE /* Grid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860138FC1CCC444600A0D8BE /* Grid.framework */; };
 		8601390C1CCC444600A0D8BE /* GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8601390B1CCC444600A0D8BE /* GridTests.swift */; };
-		86DFCD4B1CCD500F00369FD0 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DFCD481CCD500F00369FD0 /* Grid.swift */; };
-		86DFCD4C1CCD500F00369FD0 /* PlaygroundUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DFCD491CCD500F00369FD0 /* PlaygroundUtilities.swift */; };
-		86DFCD4D1CCD500F00369FD0 /* Spatial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DFCD4A1CCD500F00369FD0 /* Spatial.swift */; };
+		86A131181D32D22A0012393B /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A131151D32D22A0012393B /* Grid.swift */; };
+		86A131191D32D22A0012393B /* PlaygroundUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A131161D32D22A0012393B /* PlaygroundUtilities.swift */; };
+		86A1311A1D32D22A0012393B /* Spatial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A131171D32D22A0012393B /* Spatial.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,11 +32,9 @@
 		860139061CCC444600A0D8BE /* GridTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GridTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8601390B1CCC444600A0D8BE /* GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GridTests.swift; path = Sources/GridTests.swift; sourceTree = "<group>"; };
 		8601390D1CCC444600A0D8BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8601391B1CCC521400A0D8BE /* Grid.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Grid.playground; sourceTree = "<group>"; };
-		86DFCD461CCD385000369FD0 /* Spiral.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Spiral.playground; sourceTree = "<group>"; };
-		86DFCD481CCD500F00369FD0 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
-		86DFCD491CCD500F00369FD0 /* PlaygroundUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundUtilities.swift; sourceTree = "<group>"; };
-		86DFCD4A1CCD500F00369FD0 /* Spatial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spatial.swift; sourceTree = "<group>"; };
+		86A131151D32D22A0012393B /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		86A131161D32D22A0012393B /* PlaygroundUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundUtilities.swift; sourceTree = "<group>"; };
+		86A131171D32D22A0012393B /* Spatial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spatial.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +59,7 @@
 		860138F21CCC444600A0D8BE = {
 			isa = PBXGroup;
 			children = (
+				86A131141D32D22A0012393B /* Sources */,
 				860138FE1CCC444600A0D8BE /* Grid */,
 				8601390A1CCC444600A0D8BE /* GridTests */,
 				860138FD1CCC444600A0D8BE /* Products */,
@@ -79,11 +78,8 @@
 		860138FE1CCC444600A0D8BE /* Grid */ = {
 			isa = PBXGroup;
 			children = (
-				86DFCD471CCD500F00369FD0 /* Sources */,
 				860138FF1CCC444600A0D8BE /* Grid.h */,
 				860139011CCC444600A0D8BE /* Info.plist */,
-				86DFCD461CCD385000369FD0 /* Spiral.playground */,
-				8601391B1CCC521400A0D8BE /* Grid.playground */,
 			);
 			path = Grid;
 			sourceTree = "<group>";
@@ -97,12 +93,12 @@
 			path = GridTests;
 			sourceTree = "<group>";
 		};
-		86DFCD471CCD500F00369FD0 /* Sources */ = {
+		86A131141D32D22A0012393B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				86DFCD481CCD500F00369FD0 /* Grid.swift */,
-				86DFCD491CCD500F00369FD0 /* PlaygroundUtilities.swift */,
-				86DFCD4A1CCD500F00369FD0 /* Spatial.swift */,
+				86A131151D32D22A0012393B /* Grid.swift */,
+				86A131161D32D22A0012393B /* PlaygroundUtilities.swift */,
+				86A131171D32D22A0012393B /* Spatial.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -217,9 +213,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86DFCD4B1CCD500F00369FD0 /* Grid.swift in Sources */,
-				86DFCD4C1CCD500F00369FD0 /* PlaygroundUtilities.swift in Sources */,
-				86DFCD4D1CCD500F00369FD0 /* Spatial.swift in Sources */,
+				86A131181D32D22A0012393B /* Grid.swift in Sources */,
+				86A131191D32D22A0012393B /* PlaygroundUtilities.swift in Sources */,
+				86A1311A1D32D22A0012393B /* Spatial.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
