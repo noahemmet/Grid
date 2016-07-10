@@ -30,7 +30,7 @@
 		860138FF1CCC444600A0D8BE /* Grid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
 		860139011CCC444600A0D8BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		860139061CCC444600A0D8BE /* GridTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GridTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8601390B1CCC444600A0D8BE /* GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTests.swift; sourceTree = "<group>"; };
+		8601390B1CCC444600A0D8BE /* GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GridTests.swift; path = Sources/GridTests.swift; sourceTree = "<group>"; };
 		8601390D1CCC444600A0D8BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8601391B1CCC521400A0D8BE /* Grid.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Grid.playground; sourceTree = "<group>"; };
 		86DFCD461CCD385000369FD0 /* Spiral.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Spiral.playground; sourceTree = "<group>"; };
